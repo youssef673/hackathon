@@ -6,9 +6,28 @@ define('DB_NAME', 'doveri_ecommerce');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('APP_NAME', 'Doveri Shop');
-define('APP_BASE_URL', '/doveri');
 
 date_default_timezone_set('Europe/Rome');
+
+function resolve_base_url(): string
+{
+    $fromEnv = trim((string) getenv('APP_BASE_URL'));
+    if ($fromEnv !== '') {
+        return '/' . trim($fromEnv, '/');
+    }
+
+    $docRoot = realpath((string) ($_SERVER['DOCUMENT_ROOT'] ?? ''));
+    $appRoot = realpath(__DIR__);
+
+    if ($docRoot && $appRoot && str_starts_with($appRoot, $docRoot)) {
+        $relative = trim(str_replace('\\', '/', substr($appRoot, strlen($docRoot))), '/');
+        return $relative === '' ? '' : '/' . $relative;
+    }
+
+    return '';
+}
+
+define('APP_BASE_URL', resolve_base_url());
 
 function db(): PDO
 {
@@ -50,8 +69,7 @@ function current_user(): ?array
 function require_login(): void
 {
     if (!current_user()) {
-        header('Location: login.php');
-        exit;
+        redirect('login.php');
     }
 }
 
@@ -79,4 +97,10 @@ function url(string $path = ''): string
     }
 
     return ($base === '' ? '' : $base) . '/' . $suffix;
+}
+
+function redirect(string $path): void
+{
+    header('Location: ' . url($path));
+    exit;
 }

@@ -26,7 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $hash = password_hash($password, PASSWORD_DEFAULT);
             $stmt = db()->prepare('INSERT INTO users (name, email, password_hash, role_id) VALUES (?, ?, ?, ?)');
             $stmt->execute([$name, $email, $hash, $roleId]);
-            header('Location: login.php?registered=1');
+            redirect('login.php?registered=1');
             exit;
         }
     }

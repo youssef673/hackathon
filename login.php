@@ -17,9 +17,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $_SESSION['user'] = $user;
         $_SESSION['cart'] = $_SESSION['cart'] ?? [];
         if ($user['role_name'] === 'amministratore') {
-            header('Location: dashboard_admin.php');
+            redirect('dashboard_admin.php');
         } else {
-            header('Location: dashboard_user.php');
+            redirect('dashboard_user.php');
         }
         exit;
     }

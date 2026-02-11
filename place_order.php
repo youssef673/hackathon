@@ -2,14 +2,14 @@
 require_once __DIR__ . '/config.php';
 require_role('utente');
 if ($_SERVER['REQUEST_METHOD'] !== 'POST') {
-    header('Location: cart.php');
+    redirect('cart.php');
     exit;
 }
 verify_csrf();
 $methodId = (int) ($_POST['payment_method_id'] ?? 0);
 $cart = $_SESSION['cart'] ?? [];
 if (!$cart || !$methodId) {
-    header('Location: cart.php');
+    redirect('cart.php');
     exit;
 }
 
@@ -40,7 +40,7 @@ try {
 
     $pdo->commit();
     $_SESSION['cart'] = [];
-    header('Location: dashboard_user.php?ordered=1');
+    redirect('dashboard_user.php?ordered=1');
 } catch (Throwable $e) {
     $pdo->rollBack();
     http_response_code(500);

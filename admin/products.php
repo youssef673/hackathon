@@ -11,7 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     if ($action === 'delete' && $id) {
         $stmt = $pdo->prepare('DELETE FROM products WHERE id = ?');
         $stmt->execute([$id]);
-        header('Location: products.php?ok=1');
+        redirect('admin/products.php?ok=1');
         exit;
     }
 
@@ -32,7 +32,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             $stmt = $pdo->prepare('UPDATE products SET name = ?, description = ?, price = ?, currency_id = ? WHERE id = ?');
             $stmt->execute([$name, $description, $price, $currencyId, $id]);
         }
-        header('Location: products.php?ok=1');
+        redirect('admin/products.php?ok=1');
         exit;
     }
 }
