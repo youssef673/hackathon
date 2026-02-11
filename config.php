@@ -6,6 +6,7 @@ define('DB_NAME', 'doveri_ecommerce');
 define('DB_USER', 'root');
 define('DB_PASS', '');
 define('APP_NAME', 'Doveri Shop');
+define('APP_BASE_URL', '/doveri');
 
 date_default_timezone_set('Europe/Rome');
 
@@ -66,4 +67,16 @@ function require_role(string $role): void
 function e(string $value): string
 {
     return htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+}
+
+function url(string $path = ''): string
+{
+    $base = rtrim(APP_BASE_URL, '/');
+    $suffix = ltrim($path, '/');
+
+    if ($suffix === '') {
+        return $base === '' ? '/' : $base . '/';
+    }
+
+    return ($base === '' ? '' : $base) . '/' . $suffix;
 }

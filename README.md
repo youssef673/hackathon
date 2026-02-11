@@ -15,7 +15,8 @@ Questa implementazione copre i requisiti richiesti:
 2. Avvia Apache e MySQL dal pannello XAMPP.
 3. Apri phpMyAdmin e importa `schema.sql`.
 4. Apri `config.php` e configura host/user/password DB se necessario.
-5. Vai su `http://localhost/doveri`.
+5. In `config.php` imposta `APP_BASE_URL` (es. `/doveri`) in base alla cartella sotto `htdocs`.
+6. Vai su `http://localhost/doveri`.
 
 ## 2) File principali
 - `config.php`: connessione DB, sessione, helper sicurezza, ruolo e autenticazione.
