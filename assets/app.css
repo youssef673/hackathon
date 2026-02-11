@@ -1,0 +1,38 @@
+:root {
+  --bg: #f4f6fb;
+  --primary: #2f5bea;
+  --text: #1f2937;
+  --danger: #dc2626;
+}
+* { box-sizing: border-box; }
+body { margin: 0; font-family: Arial, sans-serif; background: var(--bg); color: var(--text); }
+.container { max-width: 1080px; margin: 0 auto; padding: 1rem; }
+.site-header, .site-footer { background: #fff; border-bottom: 1px solid #e5e7eb; }
+.site-footer { border-top: 1px solid #e5e7eb; border-bottom: none; margin-top: 2rem; }
+.nav { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: .7rem; }
+.logo { text-decoration: none; color: var(--primary); font-weight: 700; font-size: 1.1rem; }
+nav a { margin-right: .8rem; text-decoration: none; color: #111827; }
+.hero, .card { background: #fff; border-radius: 10px; padding: 1rem; margin: 1rem 0; box-shadow: 0 2px 12px rgba(0,0,0,.05); }
+.grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1rem; }
+.form-grid { display: grid; gap: .8rem; }
+.form-grid.compact { grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); }
+.inline-form { display: flex; align-items: center; gap: .5rem; flex-wrap: wrap; }
+input, select, textarea { width: 100%; padding: .55rem; border: 1px solid #d1d5db; border-radius: 6px; }
+.qty { width: 80px; }
+.btn { background: var(--primary); color: #fff; border: none; border-radius: 6px; padding: .6rem .85rem; cursor: pointer; text-decoration: none; display: inline-block; }
+.btn.outline { background: transparent; border: 1px solid var(--primary); color: var(--primary); }
+.btn.danger { background: var(--danger); }
+.actions { display: flex; gap: .7rem; flex-wrap: wrap; }
+.alert { padding: .7rem; border-radius: 6px; }
+.alert.success { background: #dcfce7; color: #166534; }
+.alert.error { background: #fee2e2; color: #991b1b; }
+.table { width: 100%; border-collapse: collapse; background: #fff; }
+.table th, .table td { padding: .65rem; border: 1px solid #e5e7eb; text-align: left; }
+
+@media (max-width: 900px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  nav a { margin-right: .4rem; }
+}
